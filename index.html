@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forkesa Nusa Perkasa</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{background:#f4f6f8;color:#333;scroll-behavior:smooth}
+
+/* HEADER */
+header{
+  background:#0f172a;
+  padding:18px 100px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:fixed;
+  width:100%;
+  top:0;
+  z-index:1000;
+  flex-direction:column;
+  align-items:flex-start;
+}
+header h1{color:#fbbf24}
+/* Tagline */
+header .tagline{
+  display:block;
+  font-size:14px;
+  color:#fbbf24;
+  margin-top:2px;
+  margin-bottom:10px;
+}
+
+/* NAV BAR DIKANAN DAN POSISI LEBIH ATAS */
+nav{
+  width:100%;
+  display:flex;
+  justify-content:flex-end;
+  margin-top:-35px; /* geser menu lebih ke atas lagi */
+}
+nav a{
+  color:#fff;
+  margin-left:25px;
+  text-decoration:none;
+  cursor:pointer;
+  font-size:18px;
+}
+nav a:hover{color:#fbbf24}
+
+/* SECTION */
+section{padding:100px 60px}
+.hero{
+  height:100vh;
+  background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+  url('https://i.ibb.co.com/Q32NtytF/Backgound-Home-Page.png') center/cover;
+  display:flex;
+  align-items:center;
+  color:#fff;
+}
+.hero h2{font-size:48px;max-width:600px}
+
+.title{text-align:center;font-size:36px;margin-bottom:40px;color:#0f172a}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:30px;
+}
+.card{
+  background:#f4f6f8;
+  color:#0f172a;
+  padding:30px;
+  border-radius:10px;
+  box-shadow:0 10px 25px rgba(0,0,0,.1);
+  text-align:center;
+  cursor:pointer;
+}
+.card:hover{transform:translateY(-5px)}
+.card img{
+  width:100%;
+  height:160px;
+  object-fit:cover;
+  border-radius:6px;
+  margin-bottom:15px;
+}
+
+/* PAGE SYSTEM */
+.page{display:none}
+.page.active{display:block}
+
+/* BUTTON */
+button{
+  padding:10px 25px;
+  background:#0f172a;
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+/* CONTACT */
+.contact-box{
+  max-width:800px;
+  margin:auto;
+  background:#fff;
+  padding:40px;
+  border-radius:10px;
+  box-shadow:0 10px 25px rgba(0,0,0,.1);
+  text-align:center;
+}
+.contact-box p{font-size:18px;margin-bottom:10px}
+
+/* JASA PERBAIKAN & MAINTENANCE */
+.services-box{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+  margin-top:30px;
+}
+.service-card{
+  background:#fbbf24;
+  color:#0f172a;
+  padding:25px;
+  border-radius:10px;
+  box-shadow:0 8px 20px rgba(0,0,0,.15);
+  text-align:center;
+  transition:0.3s;
+}
+.service-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 12px 30px rgba(0,0,0,.2);
+}
+.service-card h3{
+  margin-bottom:15px;
+}
+.service-card p{
+  font-size:16px;
+  line-height:1.5;
+}
+
+/* FOOTER */
+footer{
+  background:#0f172a;
+  color:#fff;
+  text-align:center;
+  padding:25px;
+}
+
+/* FIX FINAL: HANYA LAYANAN KAMI YANG KUNING */
+#services .grid:first-of-type .card{
+  background:#fbbf24 !important;
+  color:#0f172a !important;
+}
+
+.brand{
+  position:absolute;
+  top:7px;
+  left:7px;
+}
+
+.brand img{
+  height:80px;
+  width:auto;
+}
+
+/* DETAIL PRODUK */
+.detail-wrapper{
+  display:flex;
+  gap:30px;
+  max-width:900px;
+  margin:auto;
+}
+.detail-wrapper img{
+  width:45%;
+  max-width:350px;
+  border-radius:10px;
+}
+.detail-content{
+  width:55%;
+}
+.detail-content p{
+  font-size:17px;
+  line-height:1.6;
+  margin-bottom:20px;
+}
+.wa-order{
+  display:inline-block;
+  background:#25D366;
+  color:#fff;
+  padding:12px 20px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:bold;
+}
+@media(max-width:768px){
+  .detail-wrapper{flex-direction:column}
+  .detail-wrapper img,
+  .detail-content{width:100%}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">
+    <img src="https://i.ibb.co.com/zV7gp06Q/Logo-Perusahaan.png" alt="Logo Perusahaan">
+  </div>
+
+  <h1>Forkesa Nusa Perkasa</h1>
+  <p class="tagline">Presisi dalam Perbaikan, Kualitas dalam Pasokan.</p>
+  <nav>
+
+<a onclick="scrollToSection('home')">Home</a>
+<a onclick="scrollToSection('about')">Tentang Kami</a>
+<a onclick="scrollToSection('services')">Layanan</a>
+<a onclick="scrollToSection('products')">Produk</a>
+<a onclick="scrollToSection('contact')">Kontak</a>
+</nav>
+</header>
+
+<!-- ================= LANDING PAGE ================= -->
+<div id="home" class="page active">
+
+<section class="hero" id="home">
+<h2>Solusi Sparepart Forklift Terpercaya Dari Berbagai Merek & Jasa Service Serta Maintenance Forklift</h2>
+</section>
+
+<section id="about">
+<h2 class="title">Tentang Kami</h2>
+
+<p style="max-width:800px;margin:auto;text-align:center">
+Forkesa Nusa Perkasa adalah perusahaan yang bergerak di bidang penyedia sparepart forklift dan solusi industri logistik. Sejak berdiri, kami berkomitmen untuk menghadirkan produk berkualitas tinggi yang dapat diandalkan oleh berbagai jenis industri, mulai dari gudang, pelabuhan, hingga pabrik-pabrik besar.
+</p>
+
+<p style="max-width:800px;margin:auto;text-align:center">
+Kami memahami bahwa kelancaran operasional perusahaan sangat bergantung pada alat dan suku cadang yang berkualitas. Oleh karena itu, setiap produk yang kami tawarkan melalui Forkesa Nusa Perkasa dipilih secara cermat untuk memastikan daya tahan, keamanan, dan performa optimal.
+</p>
+
+<p style="max-width:800px;margin:auto;text-align:center">
+Selain menyediakan produk, kami juga menghadirkan layanan konsultasi profesional untuk membantu pelanggan memilih sparepart yang tepat sesuai kebutuhan spesifik. Tim kami yang berpengalaman siap memberikan dukungan teknis, saran, dan solusi cepat agar operasional bisnis tetap berjalan tanpa hambatan.
+</p>
+
+<p style="max-width:800px;margin:auto;text-align:center">
+Dengan jaringan distribusi yang luas, Forkesa Nusa Perkasa menjamin pengiriman cepat dan aman ke seluruh wilayah Indonesia. Komitmen kami adalah menjadi mitra terpercaya bagi perusahaan dalam menjaga produktivitas dan efisiensi operasional.
+</p>
+
+<p style="max-width:800px;margin:auto;text-align:center">
+Bergabung dengan Forkesa Nusa Perkasa berarti memilih kualitas, profesionalisme, dan layanan yang dapat diandalkan, karena kesuksesan pelanggan adalah prioritas utama kami.
+</p>
+
+</section>
+
+
+<section id="services">
+<h2 class="title">Layanan Kami</h2>
+<div class="grid">
+
+  <div class="card">
+    <strong>Penyedia Sparepart Forklift</strong><br><br>
+    Menyediakan berbagai sparepart forklift original dan OEM berkualitas tinggi untuk semua merek dan tipe forklift.
+  </div>
+
+  <div class="card">
+    <strong>Konsultasi Produk</strong><br><br>
+    Membantu pelanggan menentukan sparepart yang tepat sesuai kebutuhan unit dan kondisi operasional.
+  </div>
+
+  <div class="card">
+    <strong>Pengiriman Cepat & Aman</strong><br><br>
+    Pengiriman sparepart ke seluruh Indonesia dengan sistem packing aman dan tepat waktu.
+  </div>
+
+  <div class="card">
+    <strong>Dukungan Teknis</strong><br><br>
+    Layanan bantuan teknis cepat dan responsif untuk menjaga kelancaran operasional pelanggan.
+  </div>
+
+</div>
+
+<!-- ================= JASA PERBAIKAN & MAINTENANCE ================= -->
+<h2 class="title" style="margin-top:50px;">Jasa Perbaikan & Maintenance</h2>
+<div class="services-box">
+
+  <div class="service-card">
+    <h3>Perbaikan Forklift</h3>
+    <p>Perbaikan menyeluruh untuk forklift diesel, bensin, LPG, dan elektrik, meliputi sistem hydraulic, engine, dan electrical agar kembali optimal.</p>
+  </div>
+
+  <div class="service-card">
+    <h3>Maintenance Berkala</h3>
+    <p>Layanan perawatan rutin berdasarkan jam kerja forklift untuk mencegah kerusakan mendadak dan memperpanjang umur unit.</p>
+  </div>
+
+  <div class="service-card">
+    <h3>Overhaul Mesin</h3>
+    <p>Pengerjaan overhaul engine forklift secara profesional, termasuk penggantian komponen utama agar performa kembali seperti baru.</p>
+  </div>
+
+  <div class="service-card">
+    <h3>Perbaikan Sistem Hydraulic</h3>
+    <p>Penanganan kebocoran, penggantian seal kit, hose, valve, dan cylinder untuk memastikan sistem angkat bekerja maksimal.</p>
+  </div>
+
+  <div class="service-card">
+    <h3>Perbaikan Sistem Electrical</h3>
+    <p>Diagnosa dan perbaikan sistem kelistrikan forklift seperti starter, alternator, sensor, wiring harness, dan panel kontrol.</p>
+  </div>
+
+  <div class="service-card">
+    <h3>Penggantian Sparepart</h3>
+    <p>Penyediaan dan pemasangan sparepart forklift original maupun OEM berkualitas tinggi sesuai kebutuhan unit Anda.</p>
+  </div>
+
+  <div class="service-card">
+    <h3>Service On-Site</h3>
+    <p>Layanan perbaikan langsung di lokasi pelanggan untuk meminimalkan downtime dan menjaga kelancaran operasional.</p>
+  </div>
+
+  <div class="service-card">
+    <h3>Inspeksi & Diagnosa</h3>
+    <p>Pemeriksaan menyeluruh kondisi forklift untuk mendeteksi potensi kerusakan sejak dini sebelum terjadi gangguan serius.</p>
+  </div>
+
+  <div class="service-card">
+    <h3>Upgrade & Modifikasi</h3>
+    <p>Peningkatan sistem forklift sesuai kebutuhan operasional, termasuk upgrade komponen agar lebih efisien dan aman.</p>
+  </div>
+
+  <div class="service-card">
+    <h3>Konsultasi Teknis</h3>
+    <p>Layanan konsultasi profesional untuk membantu menentukan solusi terbaik terkait perawatan, perbaikan, dan pengadaan forklift.</p>
+  </div>
+
+</div>
+
+
+</section>
+
+<section id="products">
+<h2 class="title">Kategori Produk</h2>
+<div class="grid">
+<div class="card" onclick="openCategory('Hydraulic Parts')">
+<img src="https://i.ibb.co.com/Nny1zng5/Hydraulic-Parts.png">
+<h3>Hydraulic Parts</h3>
+</div>
+<div class="card" onclick="openCategory('Engine Parts')">
+<img src="https://i.ibb.co.com/pB05MMS5/Engine-Parts.png">
+<h3>Engine Parts</h3>
+</div>
+<div class="card" onclick="openCategory('Electrical Parts')">
+<img src="https://i.ibb.co.com/NPb975Q/Electrical-Parts.png">
+<h3>Electrical Parts</h3>
+</div>
+</div>
+</section>
+
+<section id="contact">
+<h2 class="title">Kontak Kami</h2>
+<div class="contact-box">
+<p>📞 0852-1731-5940</p>
+<p>📧 sales.forkesanusaperkasa@gmail.com</p>
+<p>📍 Jl. Diponegoro, Blok L4 No 21</p>
+</div>
+</section>
+
+</div>
+
+<!-- ================= HALAMAN PRODUK ================= -->
+<div id="product-page" class="page">
+
+<section>
+<h2 class="title" id="productTitle"></h2>
+
+<div class="grid" id="productList">
+<!-- Produk akan muncul di sini -->
+</div>
+
+<br><br>
+<button onclick="showHome()">⬅ Kembali ke Landing Page</button>
+</section>
+
+</div>
+
+<!-- ================= DETAIL PRODUK ================= -->
+<div id="detail-page" class="page">
+  <section>
+    <h2 class="title" id="detailTitle"></h2>
+
+    <div class="detail-wrapper">
+      <img id="detailImage">
+
+      <div class="detail-content">
+        <p id="detailDesc"></p>
+
+        <a id="waOrder" class="wa-order" target="_blank">
+          📲 Order via WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <br><br>
+    <button onclick="backToProduct()">⬅ Kembali ke Daftar Produk</button>
+  </section>
+</div>
+
+<footer>
+© 2025 Forkesa Nusa Perkasa
+</footer>
+
+<script>
+const products = {
+  "Hydraulic Parts":[
+    {name:"Hydraulic Pump", image:"https://i.ibb.co.com/Q37M4c0z/forklift-hydraulic-pump-kyb.jpg", desc:"Hydraulic Pump merupakan komponen utama dalam sistem hidrolik forklift yang berfungsi untuk menghasilkan tekanan oli guna menggerakkan sistem angkat dan kemiringan (tilt). Pompa ini dirancang untuk bekerja di bawah tekanan tinggi secara terus-menerus, sehingga membutuhkan material berkualitas dan presisi tinggi. Hydraulic pump yang baik akan memastikan forklift mampu mengangkat beban secara stabil, halus, dan aman, serta mengurangi risiko kerusakan pada komponen hidrolik lainnya."},
+    {name:"Seal Kit", image:"https://i.ibb.co.com/Vpq4bV7C/parts-type-seal-kits.jpg", desc:"Seal Kit berfungsi sebagai pelindung utama untuk mencegah kebocoran oli pada sistem hidrolik forklift. Komponen ini terdiri dari berbagai jenis seal yang dipasang pada cylinder dan sambungan hidrolik. Penggunaan seal kit berkualitas tinggi sangat penting untuk menjaga tekanan sistem tetap stabil, mencegah kontaminasi oli, serta memperpanjang usia pakai forklift. Seal kit yang tepat akan meningkatkan efisiensi kerja dan mengurangi biaya perawatan jangka panjang."},
+    {name:"Control Valve", image:"https://i.ibb.co.com/Fq59DrnZ/forklift-control-valve-assembly.jpg", desc:"Control Valve adalah komponen pengatur aliran oli hidrolik yang mengontrol pergerakan naik, turun, dan tilt pada forklift. Valve ini memungkinkan operator mengendalikan forklift dengan presisi tinggi dan respons yang halus. Control valve berkualitas membantu menjaga kestabilan beban, mengurangi hentakan saat pengoperasian, serta meningkatkan keselamatan kerja di area industri dan gudang."},
+    {name:"Hydraulic Hose", image:"https://i.ibb.co.com/wZyK0Vt3/hydraulic-hoses-with-fitting-1000x1000.jpg", desc:"Hydraulic Hose merupakan selang tekanan tinggi yang berfungsi menyalurkan oli hidrolik antar komponen sistem forklift. Selang ini dirancang untuk tahan terhadap tekanan tinggi, panas, serta getaran mesin. Hydraulic hose yang kuat dan fleksibel sangat penting untuk memastikan aliran oli tetap lancar tanpa kebocoran, sehingga sistem hidrolik dapat bekerja secara optimal dan aman."},
+    {name:"Hydraulic Cylinder", image:"https://i.ibb.co.com/fGtPM5wY/Hydraulic-Cyilinders.jpg", desc:"Hydraulic Cylinder berfungsi mengubah tekanan oli hidrolik menjadi tenaga mekanik untuk mengangkat dan menurunkan beban forklift. Komponen ini menjadi bagian vital pada sistem mast dan tilt. Dibuat dengan material baja berkualitas dan seal presisi, hydraulic cylinder memastikan forklift mampu mengangkat beban berat secara stabil, aman, dan konsisten dalam penggunaan jangka panjang."},
+    {name:"Hydraulic Reservoir", image:"https://i.ibb.co.com/99Tsmwtx/hydraulic-oil-reservoir-tank-for-stand-on-forklift.jpg", desc:"Hydraulic Reservoir adalah tangki penyimpanan oli hidrolik yang berfungsi menjaga ketersediaan oli dalam sistem. Selain sebagai tempat penyimpanan, reservoir juga membantu proses pendinginan oli dan pemisahan udara agar sistem hidrolik bekerja lebih efisien. Reservoir yang baik akan menjaga kualitas oli dan mendukung kinerja optimal seluruh sistem hidrolik forklift."},
+    {name:"Hydraulic Filter", image:"https://i.ibb.co.com/d0BNSdmp/Hydraulic-Filter.jpg", desc:"Hydraulic Filter berfungsi menyaring kotoran dan partikel halus dari oli hidrolik sebelum bersirkulasi ke seluruh sistem. Filter ini sangat penting untuk mencegah kerusakan pada pompa, valve, dan cylinder akibat kontaminasi. Penggunaan filter berkualitas akan memperpanjang umur komponen hidrolik dan menjaga performa forklift tetap maksimal."}
+  ],
+  "Engine Parts":[
+    {name:"Piston", image:"https://i.ibb.co.com/8nVtHRHR/piston-forklift.jpg", desc:"Piston merupakan komponen utama dalam mesin forklift yang berfungsi mengubah energi pembakaran menjadi tenaga mekanik. Komponen ini bekerja pada suhu dan tekanan tinggi sehingga membutuhkan material berkualitas dan presisi tinggi. Piston yang baik akan menghasilkan performa mesin yang optimal, efisien, dan tahan lama dalam penggunaan berat."},
+    {name:"Oil Filter", image:"https://i.ibb.co.com/675MYdg1/Oil-Filter.jpg", desc:"Oil Filter berfungsi menyaring kotoran dan partikel logam dari oli mesin agar sirkulasi pelumasan tetap bersih. Filter oli yang berkualitas sangat penting untuk menjaga mesin forklift tetap awet, mengurangi gesekan berlebih, dan mencegah kerusakan komponen internal mesin."},
+    {name:"Fuel Pump", image:"https://i.ibb.co.com/p6YqyxJb/Fuel-Pump.jpg", desc:"Fuel Pump berfungsi memompa bahan bakar dari tangki menuju sistem pembakaran dengan tekanan yang stabil. Komponen ini memastikan suplai bahan bakar selalu mencukupi agar mesin forklift dapat bekerja secara optimal dan responsif dalam berbagai kondisi kerja."},
+    {name:"Fuel Filter", image:"https://i.ibb.co.com/mrSnDJ2Z/Fuel-Filter.jpg", desc:"Fuel Filter berfungsi menyaring kotoran dan air dalam bahan bakar sebelum masuk ke mesin. Penggunaan fuel filter berkualitas sangat penting untuk mencegah kerusakan injector dan menjaga performa mesin tetap stabil dan efisien."},
+    {name:"Cylinder Head", image:"https://i.ibb.co.com/Xf2042nN/Cylinder-Head.jpg", desc:"Cylinder Head merupakan bagian atas mesin yang menutup ruang bakar dan mengatur aliran udara serta bahan bakar. Komponen ini berperan penting dalam proses pembakaran dan performa mesin secara keseluruhan. Cylinder head yang presisi membantu mesin bekerja lebih efisien dan bertenaga."},
+    {name:"Timing Belt", image:"https://i.ibb.co.com/whs1QzLX/Timing-Belt.jpg", desc:"Timing Belt berfungsi mengatur sinkronisasi antara pergerakan piston dan katup mesin. Komponen ini memastikan proses pembakaran berjalan tepat waktu. Timing belt yang berkualitas tinggi akan mengurangi risiko kerusakan mesin dan menjaga performa tetap optimal."},
+    {name:"Radiator", image:"https://i.ibb.co.com/rKxByt3W/Radiator.jpg", desc:"Radiator berfungsi sebagai sistem pendingin mesin forklift dengan membuang panas berlebih dari cairan pendingin. Radiator yang baik menjaga suhu mesin tetap stabil sehingga mesin dapat bekerja dengan aman dan tahan lama."},
+    {name:"Water Pump", image:"https://i.ibb.co.com/1GRjgvmj/Water-Pump.jpg", desc:"Water Pump berfungsi memompa cairan pendingin ke seluruh sistem pendinginan mesin. Komponen ini memastikan sirkulasi cairan berjalan lancar agar suhu mesin tetap terkontrol dalam berbagai kondisi kerja."},
+    {name:"Cooling Fan", image:"https://i.ibb.co.com/TBSVm5rP/Cooling-Fan.jpg", desc:"Cooling Fan membantu radiator dalam proses pendinginan mesin dengan meningkatkan aliran udara. Fan yang bekerja optimal akan membantu mencegah overheat dan menjaga performa mesin forklift."},
+    {name:"Air Filter", image:"https://i.ibb.co.com/qL2Nh350/Air-Filter.jpg", desc:"Air Filter berfungsi menyaring udara masuk ke mesin agar proses pembakaran bersih dan efisien. Filter udara yang baik akan meningkatkan performa mesin, mengurangi keausan, dan memperpanjang umur mesin forklift."}
+  ],
+  "Electrical Parts":[
+    {name:"Starter Motor", image:"https://i.ibb.co.com/0RHHK7fP/Starter-Motor-Forklift.jpg", desc:"Starter Motor berfungsi menghidupkan mesin forklift dengan mengubah energi listrik dari aki menjadi energi mekanik. Komponen ini harus memiliki torsi kuat agar mesin dapat menyala dengan cepat dan stabil."},
+    {name:"Alternator", image:"https://i.ibb.co.com/8D30VNRf/TOYOTA-Forklift-ALTERNATOR.jpg", desc:"Alternator berfungsi mengisi ulang aki dan menyuplai listrik ke seluruh sistem kelistrikan forklift saat mesin hidup. Alternator yang baik menjaga sistem listrik tetap stabil dan mendukung kinerja seluruh komponen elektrik."},
+    {name:"Voltage Regulator", image:"https://i.ibb.co.com/xtyd0Y7s/Voltage-Regulator.jpg", desc:"Voltage Regulator berfungsi mengatur dan menstabilkan tegangan listrik agar tidak merusak komponen elektronik forklift. Komponen ini sangat penting untuk menjaga keamanan sistem kelistrikan."},
+    {name:"Lightning System", image:"https://i.ibb.co.com/NdzVPCrY/Lightning-System.jpg", desc:"Lighting System menyediakan pencahayaan yang optimal untuk forklift, terutama saat bekerja di area gelap atau malam hari. Sistem ini mendukung keselamatan dan produktivitas kerja operator."},
+    {name:"Wiring Harness", image:"https://i.ibb.co.com/mrvqc3Tn/Wiring-Harness.png", desc:"Wiring Harness merupakan rangkaian kabel utama yang menghubungkan seluruh sistem kelistrikan forklift. Harness yang rapi dan berkualitas memastikan aliran listrik stabil dan mengurangi risiko gangguan sistem."},
+    {name:"Relay", image:"https://i.ibb.co.com/MD81DN4M/Relay-Forklift.png", desc:"Relay berfungsi sebagai saklar listrik otomatis yang mengontrol aliran arus ke komponen tertentu. Relay membantu melindungi sistem kelistrikan dari beban berlebih dan meningkatkan efisiensi kerja."},
+    {name:"Battery", image:"https://i.ibb.co.com/VpzcqKDS/Battery-Forklift.jpg", desc:"Battery atau aki merupakan sumber listrik utama forklift yang menyuplai daya untuk starter dan sistem kelistrikan. Aki berkualitas tinggi memastikan forklift dapat beroperasi dengan stabil dan andal."},
+    {name:"Sensors", image:"https://i.ibb.co.com/SwG3VjLT/Forklift-sensors.jpg", desc:"ensors berfungsi memantau kondisi mesin dan sistem forklift, seperti suhu, tekanan, dan posisi. Sensor yang akurat membantu sistem bekerja optimal serta mencegah kerusakan akibat kesalahan operasional."}
+  ]
+};
+
+// Scroll ke section
+function scrollToSection(id){
+  const section = document.getElementById(id);
+  if(section){
+    window.scrollTo({top:section.offsetTop - 80, behavior:'smooth'});
+  }
+}
+
+// Landing Page
+function showHome(){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('home').classList.add('active');
+  window.scrollTo(0,0);
+}
+
+// Buka halaman daftar produk
+function openCategory(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('product-page').classList.add('active');
+  document.getElementById('productTitle').innerText = name;
+
+  const list = document.getElementById('productList');
+  list.innerHTML = "";
+  products[name].forEach(item=>{
+    const div = document.createElement('div');
+    div.className = "card";
+    const img = document.createElement('img');
+    img.src = item.image;
+    div.appendChild(img);
+    const h3 = document.createElement('h3');
+    h3.innerText = item.name;
+    div.appendChild(h3);
+    list.appendChild(div);
+  });
+  window.scrollTo(0,0);
+}
+
+let lastCategory = "";
+
+// ubah openCategory TANPA MENGHAPUS ISINYA
+function openCategory(name){
+  lastCategory = name;
+
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('product-page').classList.add('active');
+  document.getElementById('productTitle').innerText = name;
+
+  const list = document.getElementById('productList');
+  list.innerHTML = "";
+
+  products[name].forEach(item=>{
+    const div = document.createElement('div');
+    div.className = "card";
+
+    div.onclick = () => openDetail(item);
+
+    const img = document.createElement('img');
+    img.src = item.image;
+    div.appendChild(img);
+
+    const h3 = document.createElement('h3');
+    h3.innerText = item.name;
+    div.appendChild(h3);
+
+    list.appendChild(div);
+  });
+
+  window.scrollTo(0,0);
+}
+
+// buka detail produk
+function openDetail(item){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('detail-page').classList.add('active');
+
+  document.getElementById('detailTitle').innerText = item.name;
+  document.getElementById('detailImage').src = item.image;
+  document.getElementById('detailDesc').innerText = item.desc || "Deskripsi produk belum tersedia.";
+
+  window.scrollTo(0,0);
+  document.getElementById('waOrder').href =
+"https://wa.me/6285217315940?text=Saya tertarik dengan produk " + item.name;
+}
+
+// kembali ke daftar produk
+function backToProduct(){
+  openCategory(lastCategory);
+}
+</script>
+
+</body>
+</html>
